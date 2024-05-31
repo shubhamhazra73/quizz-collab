@@ -36,8 +36,7 @@ function App() {
         <Route path="/" element={<App />}></Route>
         <Route index element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/help" element={<Help/>} />
+        <Route path="/help" element={<Help />} />
         <Route path="/dashboard" element={<RequireAuth><Dashboard CUId={currentUserUid} /></RequireAuth>} />
         <Route path="/examreview/:id" element={<RequireAuth><ExamReview /></RequireAuth>} />
         <Route path="/create/:id" element={<RequireAuth><CreateQuiz /></RequireAuth>} />

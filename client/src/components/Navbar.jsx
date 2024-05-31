@@ -107,7 +107,7 @@ const Navbar = () => {
                     <Link to="/login" style={{ textDecoration: "none" }}>
                         <MenuItemSecond>Login</MenuItemSecond>
                     </Link>
-                    <Link to="/register" style={{ textDecoration: "none", marginRight: "10%" }}>
+                    <Link to="/login" style={{ textDecoration: "none", marginRight: "10%" }}>
                         <MenuItemFirst>Sign up</MenuItemFirst>
                     </Link>
                 </Right>
