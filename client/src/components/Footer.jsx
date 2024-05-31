@@ -69,7 +69,7 @@ const Footer = () => {
             <Left>
                 <Logo>QuizBlitz</Logo>
                 <Description>
-                   
+
                 </Description>
                 <SocialContainer>
                     <SocialIcon color="55ACEE">

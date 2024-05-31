@@ -87,18 +87,18 @@ const Navbar = () => {
         <Container>
             <Wrapper>
                 <Left>
-                
+
                     <Logo>
-                        <img src="https://i.ibb.co/0mr4nf1/quizblit-high-resolution-logo-transparent-2.png" 
-                       width="140" alt="quizblit-high-resolution-logo-transparent-2" border="0" />
-                        </Logo>{/*online exam maker*/}
+                        <img src="https://i.ibb.co/0mr4nf1/quizblit-high-resolution-logo-transparent-2.png"
+                            width="140" alt="quizblit-high-resolution-logo-transparent-2" border="0" />
+                    </Logo>{/*online exam maker*/}
                     <Link to="/">
                         <MenuItem>Home</MenuItem>
                     </Link>
                     {/* <Link to="/Features"> */}
-                        <MenuItem>Features</MenuItem>
+                    <MenuItem>Features</MenuItem>
                     {/* </Link> */}
-                    
+
                     <Link to="/help">
                         <MenuItem>Help</MenuItem>
                     </Link>

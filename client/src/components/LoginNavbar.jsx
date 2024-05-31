@@ -6,7 +6,7 @@ import { logoutD } from "../redux/apiCalls";
 
 const Container = styled.div`
 height:60px;
-background-color:#393E46;
+background-color:#010409;
 `
 const Wrapper = styled.div`
 padding:0px 20px;
@@ -31,12 +31,15 @@ padding:10px 12px;
 const MenuItem = styled.button`
 font-size: 14px;
 cursor: pointer;
-background-color: #393E46;
+background-color: #010409;
 color:#EEEEEE;
 padding:20px 12px;
 border:none;
 &:hover {
-    background-color: #222831;
+   background-color: #31363F;
+    border-radius : 10px;
+    margin : 1px;
+    padding : 10px;
   }
 `
 const Right = styled.div`
@@ -77,7 +80,7 @@ const LoginNavbar = () => {
         <Container>
             <Wrapper>
                 <Left>
-                    <Link to="/" style={{textDecoration:"none"}}>
+                    <Link to="/" style={{ textDecoration: "none" }}>
                         <Logo></Logo>{/*online exam maker*/}
                     </Link>
                     <Link to="/dashboard">
@@ -88,7 +91,7 @@ const LoginNavbar = () => {
                     </Link>
                 </Left>
                 <Right>
-                    <Link to="/help" style={{ textDecoration: "none" }}>
+                    <Link to="" style={{ textDecoration: "none" }}>
                         <MenuItemSecond><Help style={{ verticalAlign: "middle" }} /></MenuItemSecond>
                     </Link>
                     <Link to="/" style={{ textDecoration: "none", marginRight: "10%" }}>

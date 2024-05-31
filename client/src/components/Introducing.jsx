@@ -75,7 +75,7 @@ const Introducing = () => {
                     <Info>
                         <Image><Check /></Image>
                         <Title> <u>Auto-grading</u> </Title>
-                        <Description>OEM can automatically grade your assessments, saving you the time.</Description>
+                        <Description>QuizBlitz can automatically grade your assessments, saving you the time.</Description>
                     </Info>
                 </Section>
             </Container>
