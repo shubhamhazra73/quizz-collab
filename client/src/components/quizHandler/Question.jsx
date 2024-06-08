@@ -103,7 +103,11 @@ const Question = ({
 
   const handleNext = () => {
     if (currQues >= (questions.length - 1)) {
-      setTimeout(() => { navigate(`/result/${exam_id}`) }, 1000);
+      if (pass == true)
+        navigate(`/dashboard`)
+      else {
+        setTimeout(() => { navigate(`/result/${exam_id}`) }, 1000);
+      }
     } else if (selected) {
       setCurrQues(currQues + 1);
       setSelected();
@@ -114,8 +118,10 @@ const Question = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(exam_id)
-    if (pass == userId) {
+    console.log(pass)
+    if (pass == true) {
       console.log("datas did not saved")
+      handleNext();
     } else {
       const userExam = {
         userId: userId,
@@ -131,7 +137,7 @@ const Question = ({
   }
 
   const handleReview = async (i) => {
-    if (pass == userId) {
+    if (pass == true) {
       console.log("datas did not saved")
     } else {
       const userOptions = {
@@ -180,7 +186,7 @@ const Question = ({
             color="primary"
             size="large"
             style={{ width: 185 }}
-            onClick={currQues >= (questions.length - 1) ? handleSubmit : handleNext}>
+            onClick={currQues >= (questions.length - 1) ? handleSubmit : handleSubmit}>
             {currQues >= (questions.length - 1) ? (<span  >Submit</span>) : (<span>Next Question</span>)}
           </button>
         </Control>

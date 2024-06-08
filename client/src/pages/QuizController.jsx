@@ -40,6 +40,9 @@ const QuizController = (CUId) => {
                 setTimerData(data2.data[0].time)
                 console.log(data2.data[0].time)
                 alert("You are in preview mode that means your question data will not be saved")
+                setTimeout(() => {
+                    navigate("/dashboard" + exam_id)
+                }, ((data2.data[0].time) * 60) + "000");
             } else {
                 const dummyData = {
                     userId: CUId.CUId,
@@ -53,13 +56,14 @@ const QuizController = (CUId) => {
                 axios.post("http://localhost:5000/userexams/", dummyData).then((response) => {
                     console.log(response.status);
                     console.log(response.data);
-                    setExam_id(response.data._id)
+                    setExam_id(response.data._id);
+                    setTimeout(() => {
+                        navigate("/result/" + response.data._id)
+                    }, ((data2.data[0].time) * 60) + "000");
                 });
                 setTimerData(data2.data[0].time)
             }
-            setTimeout(() => {
-                navigate("/result/" + id.id)
-            }, ((data2.data[0].time) * 60) + "000");
+
         }))
     }
 
