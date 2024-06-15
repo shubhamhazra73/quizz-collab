@@ -15,6 +15,7 @@ import axios from 'axios'
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { publicRequest } from "../requestMethods";
 
 const Container = styled.table`
     width: 100%;
@@ -62,13 +63,13 @@ const Dashboard = (CUId) => {
 
 
   const getExamNames = async () => {
-    const { data } = await axios.get(`http://localhost:5000/exam/${CUId.CUId}`);
+    const { data } = await publicRequest.get(`/exam/${CUId.CUId}`);
     setExamNameStorage(data);
     setIsLoading(false);
   }
 
   const deleteExam = (id) => {
-    axios.delete(`http://localhost:5000/exam/${id}`).then((response) => {
+    publicRequest.delete(`/exam/${id}`).then((response) => {
       console.log(response.status);
       console.log(response.data);
     });
@@ -89,7 +90,7 @@ const Dashboard = (CUId) => {
         examname: examName,
       };
       console.log(newExam)
-      axios.post("http://localhost:5000/exam/", newExam).then((response) => {
+      publicRequest.post("/exam/", newExam).then((response) => {
         console.log(response.status);
         console.log(response.data);
       });

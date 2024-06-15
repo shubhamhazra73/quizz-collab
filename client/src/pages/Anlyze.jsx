@@ -3,6 +3,7 @@ import LoginNavbar from '../components/LoginNavbar'
 import styled from 'styled-components'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { publicRequest } from '../requestMethods'
 import { useEffect, useState } from 'react'
 
 const Container = styled.div`
@@ -62,7 +63,7 @@ const Anlyze = (CUId) => {
 
 
     const getExamInfos = async () => {
-        const { data } = await axios.get(`http://localhost:5000/userexams/examanalysis/${id.id}`);
+        const { data } = await publicRequest.get(`/userexams/examanalysis/${id.id}`);
         setExamInfo(data);
         setStart(false);
     }

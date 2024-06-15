@@ -2,6 +2,7 @@ import Footer from '../components/Footer'
 import LoginNavbar from '../components/LoginNavbar'
 import styled from 'styled-components'
 import axios from 'axios'
+import { publicRequest } from '../requestMethods'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -61,13 +62,13 @@ const Reports = (CUId) => {
 
 
   const getUserDatas = async () => {
-    const { data } = await axios.get(`http://localhost:5000/userexams/` + CUId.CUId)
+    const { data } = await publicRequest.get(`/userexams/` + CUId.CUId)
     setUserDatas(data)
     console.log(data)
   }
 
   const getExamDatas = async () => {
-    await axios.get(`http://localhost:5000/exam`).then((response) => {
+    await publicRequest.get(`/exam`).then((response) => {
       setExamDatas(response.data)
       console.log(response.data)
       setIsLoading(false)
@@ -100,7 +101,7 @@ const Reports = (CUId) => {
             <Tr key={index}>
               <Td>{exam.examname}</Td>
               <Td><Link to={`/quiz/${exam._id}`}><Button>Go to exam</Button></Link></Td>
-              <Td>{userDatas.findIndex(u=> u.examId === exam._id) > -1 ? (<span style={{border:"none",borderRadius:"10px",padding:"5px",backgroundColor:"#CC0000",color:"#EEEEEE",fontWeight:"500" }}>{"Solved"}</span>) : <span style={{border:"none",borderRadius:"10px",padding:"5px",backgroundColor:"#007E33",color:"#EEEEEE",fontWeight:"500" }}>{"Available"}</span>}</Td>
+              <Td>{userDatas.findIndex(u => u.examId === exam._id) > -1 ? (<span style={{ border: "none", borderRadius: "10px", padding: "5px", backgroundColor: "#CC0000", color: "#EEEEEE", fontWeight: "500" }}>{"Solved"}</span>) : <span style={{ border: "none", borderRadius: "10px", padding: "5px", backgroundColor: "#007E33", color: "#EEEEEE", fontWeight: "500" }}>{"Available"}</span>}</Td>
             </Tr>
           ))}
         </Table>

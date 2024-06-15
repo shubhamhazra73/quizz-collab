@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Footer from "../Footer";
 import LoginNavbar from "../LoginNavbar";
 import axios from 'axios'
+import { publicRequest } from "../../requestMethods";
 import { useParams } from 'react-router-dom'
 
 const Container = styled.div`
@@ -29,13 +30,13 @@ const Result = () => {
 
   const getExamNames = async () => {
     console.log(id);
-    const { data } = await axios.get(`http://localhost:5000/userexams/exam/${id.id}`);
+    const { data } = await publicRequest.get(`/userexams/exam/${id.id}`);
     setScore(data[0].grade);
     getPassGrade(data);
   }
 
   const getPassGrade = async (data) => {
-    await axios.get(`http://localhost:5000/exam/exam/${data[0].examId}`).then((response) => {
+    await publicRequest.get(`/exam/exam/${data[0].examId}`).then((response) => {
       setPassGrade(response.data[0].passGrade);
       setIsLoading(false);
     });

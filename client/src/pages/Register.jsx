@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import { publicRequest } from "../requestMethods";
 
 const Container = styled.div`
   width: 100vw;
@@ -115,7 +116,7 @@ const Register = () => {
       password: pass,
     };
     console.log(registered);
-    axios.post("http://localhost:5000/users/", registered).then((response) => {
+    publicRequest.post("/users/", registered).then((response) => {
       console.log(response.status);
       console.log(response.data);
     });

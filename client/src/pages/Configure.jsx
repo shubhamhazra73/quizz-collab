@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import Footer from '../components/Footer'
 import LoginNavbar from '../components/LoginNavbar'
 import axios from 'axios'
-import { useParams,useNavigate } from 'react-router-dom'
+import { publicRequest } from '../requestMethods'
+import { useParams, useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
 width: 100%;
@@ -75,7 +76,7 @@ const Configure = () => {
   }, [])
 
   const getConfigureData = async () => {
-    await axios.get(`http://localhost:5000/exam/exam/` + id.id).then((response) => {
+    await publicRequest.get(`/exam/exam/` + id.id).then((response) => {
       console.log(response.status);
       setMyStartDatas(response.data);
       setIsLoading(false);
@@ -89,7 +90,7 @@ const Configure = () => {
       time: examTime,
       passGrade: examGrade,
     };
-    axios.patch(`http://localhost:5000/exam/${id.id}`, exam).then((response) => {
+    publicRequest.patch(`/exam/${id.id}`, exam).then((response) => {
       console.log(response.status);
       console.log(response.data);
       navigate("/dashboard");

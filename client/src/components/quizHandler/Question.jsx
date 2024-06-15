@@ -4,6 +4,7 @@ import ErrorMessage from "./ErrorMessage";
 import styled from "styled-components"
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { publicRequest } from "../../requestMethods";
 import LoginNavbar from "../LoginNavbar";
 import Footer from "../Footer";
 
@@ -84,7 +85,7 @@ const Question = ({
   }, [])
 
   const handleCreatorUser = async () => {
-    const { data } = await axios.get('http://localhost:5000/exam/exam/' + id.id)
+    const { data } = await publicRequest.get('/exam/exam/' + id.id)
     setPass(data[0].creatorUserId == userId)
     setIsLoading(false)
   }
@@ -128,7 +129,7 @@ const Question = ({
         examId: id.id,
         grade: score,
       };
-      await axios.patch(`http://localhost:5000/userexams/${exam_id}`, userExam).then((response) => {
+      await publicRequest.patch(`/userexams/${exam_id}`, userExam).then((response) => {
         console.log(response.status);
         console.log(response.data);
         handleNext();
@@ -148,7 +149,7 @@ const Question = ({
         }
       };
       console.log(userOptions)
-      await axios.put("http://localhost:5000/userexams/" + exam_id, userOptions).then((response) => {
+      await publicRequest.put("/userexams/" + exam_id, userOptions).then((response) => {
         console.log(response.status);
         console.log(response.data);
       });

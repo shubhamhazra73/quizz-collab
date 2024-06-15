@@ -15,6 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { Link } from "react-router-dom";
+import { publicRequest } from '../requestMethods';
 
 
 const Container = styled.table`
@@ -103,7 +104,7 @@ const CreateQuiz = () => {
                 questionTitle: questionTitle,
             };
             console.log(newQuestion)
-            axios.post("http://localhost:5000/examquestions/", newQuestion).then((response) => {
+            publicRequest.post("/examquestions/", newQuestion).then((response) => {
                 console.log(response.status);
                 const data = response.data._id;
                 handleOptions({ data, inputOption });
@@ -128,7 +129,7 @@ const CreateQuiz = () => {
                 }
             }
             console.log(option);
-            axios.put("http://localhost:5000/examquestions/" + data, option).then((response) => {
+            publicRequest.put("/examquestions/" + data, option).then((response) => {
                 console.log(response.status);
                 console.log(response);
             });
@@ -163,13 +164,13 @@ const CreateQuiz = () => {
     }, [options, dummy, dumy]);
 
     const getExams = async () => {
-        const { data } = await axios.get('http://localhost:5000/examquestions/' + id.id);
+        const { data } = await publicRequest.get('/examquestions/' + id.id);
         setExamDatas(data);
         console.log(data[0].options)
     }
 
     const deleteQuestion = (propId) => {
-        axios.delete('http://localhost:5000/examquestions/' + propId).then((response) => {
+        publicRequest.delete('/examquestions/' + propId).then((response) => {
             console.log(response.status);
             console.log(response.data);
             setDummy(dummy + 1);

@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import { ArrowForward } from '@mui/icons-material';
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { publicRequest } from '../requestMethods';
 
 const Container = styled.table`
       width: 100%;
@@ -77,7 +78,7 @@ const ExamReview = () => {
     }, [])
 
     const getExamInfos = async () => {
-        const { data } = await axios.get(`http://localhost:5000/userexams/exam/${id.id}`);
+        const { data } = await publicRequest.get(`/userexams/exam/${id.id}`);
         console.log(data)
         console.log(data[0].examReview[0].qAnswers)
         setExamQuestions(data);

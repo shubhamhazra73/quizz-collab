@@ -124,7 +124,7 @@ const Hero = () => {
               Create, Upload and Analyze Tests, Quizzes and Assessments for free with QuizBlitz!
             </Description>
             <Button>
-              <Link to="/register" style={{ textDecoration: "none", color: "#EEEEEE" }}>
+              <Link to="/login" style={{ textDecoration: "none", color: "#EEEEEE" }}>
                 Get Started for Free  &gt;&gt;
               </Link>
             </Button>
