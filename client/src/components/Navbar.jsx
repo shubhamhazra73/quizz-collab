@@ -95,11 +95,11 @@ const Navbar = () => {
                     <Link to="/">
                         <MenuItem>Home</MenuItem>
                     </Link>
-                    {/* <Link to="/Features"> */}
+                    <Link to="#">
                     <MenuItem>Features</MenuItem>
-                    {/* </Link> */}
+                    </Link>
 
-                    <Link to="/help">
+                    <Link to="#">
                         <MenuItem>Help</MenuItem>
                     </Link>
                 </Left>

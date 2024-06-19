@@ -1,16 +1,20 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+import LoginNavbar from '../components/LoginNavbar';
+
+const Container = styled.div`
+  text-align: center;
+`;
 
 const Help = () => {
-    return (
-        <>
-            <div style={{ position: "absolute", left: "0", right: "0", bottom: "0", top: "0px", margin: "0", padding: "0", height: "100%", overflow: "hidden" }}>
-                <iframe src="#" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen title="help" width="100%" height="90%"></iframe>
-                <p>also here is a link for the help video :<a href="https://www.youtube.com/watch?v=ZlWPKypW20Q">click here</a></p>
+  return (
+    <>
+      <LoginNavbar />
+      <Container>
+        <h1>Coming Soon!!!</h1>
+      </Container>
+    </>
+  );
+};
 
-            </div>
-
-        </>
-    )
-}
-
-export default Help
+export default Help;

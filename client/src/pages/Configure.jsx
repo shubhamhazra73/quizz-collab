@@ -1,87 +1,93 @@
-import { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import Footer from '../components/Footer'
-import LoginNavbar from '../components/LoginNavbar'
-import axios from 'axios'
-import { publicRequest } from '../requestMethods'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Footer from '../components/Footer';
+import LoginNavbar from '../components/LoginNavbar';
+import axios from 'axios';
+import { publicRequest } from '../requestMethods';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
-width: 100%;
-height:60vh;
-border-collapse: collapse;
-align-items: center;
-justify-content: center;
-text-align: center;
-border-radius:8px;
-overflow: hidden;
-background-color:#EEEEEE;
-`
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+`;
+
 const Wrapper = styled.div`
-width:86%;
-height:100%;
-margin:0% 7%;
-align-items: center;
-justify-content: center;  
-background-color:white;
-`
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
 const Form = styled.form`
-height:100%;
-margin:0% 10%;
-display: flex;
-flex-wrap: wrap;
-background-color:#EEEEEE;
-`
-const Input = styled.input`
-min-width:500px;
-margin:20px 10px 0px 0px;
-padding:5px;
-border:none;
-border-radius:3px;
-`
-const Label = styled.label`
-font-size:14px;
-padding: 10px;
-`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Section = styled.div`
-margin:10px 20px;
-`
+  margin-bottom: 20px;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+`;
+
+const Label = styled.label`
+  font-size: 14px;
+  margin-bottom: 8px;
+`;
+
 const Button = styled.button`
-font-size:16px;
-font-weight:400;
-border:none;
-border-radius:3px;
-background-color:#0275d8;
-color:white;
-margin:10px 20px;
-padding:10px 30px;
-cursor: pointer;
-`
+  background-color: #0275d8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+`;
+
+const LoadingSpinner = styled.div`
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+`;
 
 const Configure = () => {
-
   const [myStartDatas, setMyStartDatas] = useState([]);
-  const [examName, setExamName] = useState("");
-  const [examGrade, setExamGrade] = useState(0);
-  const [examTime, setExamTime] = useState(0);
+  const [examName, setExamName] = useState('');
+  const [examGrade, setExamGrade] = useState('');
+  const [examTime, setExamTime] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
   const params = useParams();
-  const id = params;
+  const id = params.id;
 
   useEffect(() => {
     getConfigureData();
-  }, [])
+  }, []);
 
   const getConfigureData = async () => {
-    await publicRequest.get(`/exam/exam/` + id.id).then((response) => {
+    await publicRequest.get(`/exam/exam/${id}`).then((response) => {
       console.log(response.status);
       setMyStartDatas(response.data);
       setIsLoading(false);
-    })
-  }
+    });
+  };
 
   const handleConfigure = (e) => {
     e.preventDefault();
@@ -90,22 +96,25 @@ const Configure = () => {
       time: examTime,
       passGrade: examGrade,
     };
-    publicRequest.patch(`/exam/${id.id}`, exam).then((response) => {
+    publicRequest.patch(`/exam/${id}`, exam).then((response) => {
       console.log(response.status);
       console.log(response.data);
-      navigate("/dashboard");
+      navigate('/dashboard');
     });
-  }
-
+  };
 
   if (isLoading) {
     return (
       <>
         <LoginNavbar />
-        <div style={{ verticalAlign: "middle", display: "flex", border: "16px solid #f3f3f3", borderRadius: "50%", borderTop: "16px solid #3498db", width: "120px", height: "120px", WebkitAnimation: "spin 2s linear infinite" }}></div>
+        <Container>
+          <LoadingSpinner />
+        </Container>
         <Footer />
-      </>)
+      </>
+    );
   }
+
   return (
     <>
       <LoginNavbar />
@@ -114,25 +123,43 @@ const Configure = () => {
           <Form onSubmit={handleConfigure}>
             <Section>
               <Label htmlFor="quizName">Quiz Name</Label>
-              <Input type="text" name="quizName" placeholder={`${myStartDatas[0].examname}`} onChange={e => setExamName(e.target.value)} />
+              <Input
+                type="text"
+                name="quizName"
+                placeholder="Enter Quiz Name"
+                value={examName}
+                onChange={(e) => setExamName(e.target.value)}
+              />
             </Section>
             <Section>
-              <Label htmlFor="time">Time Limit</Label>
-              <Input type="number" name="time" placeholder={`${myStartDatas[0].time}`} onChange={e => setExamTime(e.target.value)} />
+              <Label htmlFor="time">Time Limit (minutes)</Label>
+              <Input
+                type="number"
+                name="time"
+                placeholder="Enter Time Limit"
+                value={examTime}
+                onChange={(e) => setExamTime(e.target.value)}
+              />
             </Section>
             <Section>
               <Label htmlFor="grade">Pass Grade</Label>
-              <Input type="text" name="grade" placeholder={`${myStartDatas[0].passGrade}`} onChange={e => setExamGrade(e.target.value)} />
+              <Input
+                type="text"
+                name="grade"
+                placeholder="Enter Grade"
+                value={examGrade}
+                onChange={(e) => setExamGrade(e.target.value)}
+              />
             </Section>
             <Section>
-              <Button type='submit' align="right" style={{ margin: "0px 400px 20px 20px" }}>Save</Button>
+              <Button type="submit">Save</Button>
             </Section>
           </Form>
         </Wrapper>
       </Container>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Configure
+export default Configure;

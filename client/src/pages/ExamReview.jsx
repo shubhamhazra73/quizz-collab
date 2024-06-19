@@ -89,10 +89,25 @@ const ExamReview = () => {
     if (isLoading) {
         return (
             <>
-                <LoginNavbar />
-                <div style={{ verticalAlign: "middle", display: "flex", border: "16px solid #f3f3f3", borderRadius: "50%", borderTop: "16px solid #3498db", width: "120px", height: "120px", WebkitAnimation: "spin 2s linear infinite" }}></div>
-                <Footer />
-            </>)
+    <LoginNavbar />
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+    }}>
+      <div style={{
+        border: "16px solid #f3f3f3",
+        borderRadius: "50%",
+        borderTop: "16px solid #3498db",
+        width: "120px",
+        height: "120px",
+        WebkitAnimation: "spin 2s linear infinite"
+      }}>
+      </div>
+    </div>
+  </>
+            )
     }
     return (
         <>

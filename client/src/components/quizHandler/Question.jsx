@@ -121,7 +121,7 @@ const Question = ({
     console.log(exam_id)
     console.log(pass)
     if (pass == true) {
-      console.log("datas did not saved")
+      console.log("datas did not get saved")
       handleNext();
     } else {
       const userExam = {
@@ -139,7 +139,7 @@ const Question = ({
 
   const handleReview = async (i) => {
     if (pass == true) {
-      console.log("datas did not saved")
+      console.log("datas did not get saved")
     } else {
       const userOptions = {
         examReview: {
@@ -159,10 +159,25 @@ const Question = ({
   if (isLoading) {
     return (
       <>
-        <LoginNavbar />
-        <div style={{ verticalAlign: "middle", display: "flex", border: "16px solid #f3f3f3", borderRadius: "50%", borderTop: "16px solid #3498db", width: "120px", height: "120px", WebkitAnimation: "spin 2s linear infinite" }}></div>
-        <Footer />
-      </>)
+    <LoginNavbar />
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+    }}>
+      <div style={{
+        border: "16px solid #f3f3f3",
+        borderRadius: "50%",
+        borderTop: "16px solid #3498db",
+        width: "120px",
+        height: "120px",
+        WebkitAnimation: "spin 2s linear infinite"
+      }}>
+      </div>
+    </div>
+  </>
+      )
   }
   return (
     <Container>

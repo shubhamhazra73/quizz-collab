@@ -7,46 +7,55 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Container = styled.div`
-height:100%;
-margin: 4% 7%;
-`
+  height: 100%;
+  margin: 4% 7%;
+`;
+
 const Table = styled.table`
-font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-`
-const Td = styled.td`
-border: 1px solid #ddd;
-  padding: 8px;
-`
+  margin-top: 20px; /* Adjust margin as needed */
+`;
+
 const Th = styled.th`
-    border: 1px solid #ddd;
-  padding: 12 8px;
+  border: 1px solid #ddd;
+  padding: 12px 8px;
   text-align: left;
   background-color: #393E46;
-  color: #EEEEEE; 
-`
+  color: #EEEEEE;
+`;
+
+const Td = styled.td`
+  border: 1px solid #ddd;
+  padding: 8px;
+`;
+
 const Tr = styled.tr`
-&:nth-child(even){
+  &:nth-child(even) {
     background-color: #f2f2f2;
-}
-&:hover {
-    background-color:#ddd;
   }
-`
+  &:hover {
+    background-color: #ddd;
+  }
+`;
+
 const Header = styled.h1`
-  text-align:center;
-  padding-bottom:10px;
-  colot:#222831;
-`
+  text-align: center;
+  padding-bottom: 10px;
+  color: #222831; /* Corrected typo in 'color' property */
+`;
+
 const Button = styled.button`
-background-color:#393E46;
-color:#EEEEEE;
-border:none;
-border-radius:15px;
-font-size:14px;
-cursor: pointer;
-`
+  background-color: #393E46;
+  color: #EEEEEE;
+  border: none;
+  border-radius: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-top: 10px; /* Adjust margin as needed */
+`;
 
 const Reports = (CUId) => {
 
@@ -82,9 +91,26 @@ const Reports = (CUId) => {
     return (
       <>
         <LoginNavbar />
-        <div style={{ verticalAlign: "middle", display: "flex", border: "16px solid #f3f3f3", borderRadius: "50%", borderTop: "16px solid #3498db", width: "120px", height: "120px", WebkitAnimation: "spin 2s linear infinite" }}></div>
-        <Footer />
-      </>)
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}>
+          <div style={{
+            border: "16px solid #f3f3f3",
+            borderRadius: "50%",
+            borderTop: "16px solid #3498db",
+            width: "120px",
+            height: "120px",
+            WebkitAnimation: "spin 2s linear infinite"
+          }}>
+          </div>
+        </div>
+      </>
+    );
+    
+    
   }
   return (
     <>

@@ -18,40 +18,49 @@ import 'react-toastify/dist/ReactToastify.css';
 import { publicRequest } from "../requestMethods";
 
 const Container = styled.table`
-    width: 100%;
-    height:40vh;
-    border-collapse: collapse;
-    text-align: center;
-    border-radius:8px;
-    overflow: hidden;
-    background-color:#EEEEEE;
+  width: 100%;
+  height: 40vh;
+  border-collapse: collapse;
+  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #EEEEEE;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
 `;
+
 const Wrapper = styled.caption`
-width:90%;
-margin:5%;
-`
+  width: 90%;
+  margin: 5%;
+`;
+
 const Button = styled.button`
-background-color:#EEEEEE;
-color:#393E46;
-border:none;
-border-radius:15px;
-font-size:14px;
-cursor: pointer;
-`
+  background-color: #EEEEEE;
+  color: #393E46;
+  border: none;
+  border-radius: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  &:hover {
+    background-color: #DFE2E2; /* Lighten the background color on hover */
+  }
+`;
+
 const CreateButton = styled.button`
-font-size:26px;
-font-weight:600;
-margin-bottom:3%;
-padding: 15px 25px;
-border:none;
-border-radius:10px;
-background-color:#00ADB5;
-color:#EEEEEE;
-cursor: pointer;
-&:hover {
-  background-color: #55B4BA;
-}
-`
+  font-size: 26px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  background-color: #00ADB5;
+  color: #EEEEEE;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  &:hover {
+    background-color: #55B4BA; /* Darken the background color on hover */
+  }
+`;
 const Dashboard = (CUId) => {
 
   const notify = () => toast.success("Link successfully  copied to the clipboard");
@@ -102,8 +111,22 @@ const Dashboard = (CUId) => {
     return (
       <>
         <LoginNavbar />
-        <div style={{ verticalAlign: "middle", display: "flex", border: "16px solid #f3f3f3", borderRadius: "50%", borderTop: "16px solid #3498db", width: "120px", height: "120px", WebkitAnimation: "spin 2s linear infinite" }}></div>
-        <Footer />
+        <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+    }}>
+      <div style={{
+        border: "16px solid #f3f3f3",
+        borderRadius: "50%",
+        borderTop: "16px solid #3498db",
+        width: "120px",
+        height: "120px",
+        WebkitAnimation: "spin 2s linear infinite"
+      }}>
+      </div>
+    </div>
       </>)
   }
   return (
